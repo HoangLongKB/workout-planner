@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Workout-Planner:build:production",
+            "firebaseProject": "workout-planner-kb",
+            "firebaseHostingSite": "workout-planner-kb"
+          }
         }
       }
     }

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "workout-planner-kb"
+  },
+  "targets": {
+    "workout-planner-kb": {
+      "hosting": {
+        "Workout-Planner": [
+          "workout-planner-kb"
+        ]
+      }
+    }
+  }
+}

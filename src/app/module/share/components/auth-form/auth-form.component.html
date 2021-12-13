@@ -1,0 +1,41 @@
+<div class="row form-title">
+  <div class="col-auto m-auto">
+    <ng-content select="h1"></ng-content>
+  </div>
+</div>
+<div class="row form-wrapper">
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" formControlName="email"
+        [ngClass]="{ 'is-invalid': isEmailInvalid }">
+      <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="d-block invalid-feedback" *ngIf="isEmailInvalid">
+      Email format need to match abc@mail.com
+    </div>
+    <div class="-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password"
+        [ngClass]="{ 'is-invalid': isPasswordEmpty }">
+    </div>
+    <div class="invalid-feedback d-block" *ngIf="isPasswordEmpty">
+      Password is required
+    </div>
+    <div class="form-group" *ngIf="!!isRegister">
+      <label for="password-confirm">Confirm Password</label>
+      <input type="password" class="form-control" id="password-confirm" [value]="password_confirm"
+        [ngClass]="{ 'is-invalid': !isPasswordMatch }" (input)="onPasswordConfirmInput($event)">
+    </div>
+    <div class="invalid-feedback d-block" *ngIf="!isPasswordMatch && !!isRegister">
+      Confirm password need to match
+    </div>
+    <ng-content select=".error"></ng-content>
+    <div class="row">
+      <div class="col-auto my-2">
+        <ng-content select="button"></ng-content>
+      </div>
+    </div>
+  </form>
+  <ng-content select="a"></ng-content>
+</div>

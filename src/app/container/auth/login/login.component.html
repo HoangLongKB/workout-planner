@@ -1,0 +1,10 @@
+<div class="w-25 m-auto">
+  <app-auth-form (submit)="onLogin($event)">
+    <h1 class="h1 font-weight-bolder">Login</h1>
+    <button type="submit" class="btn btn-primary shadow-none">Submit</button>
+    <a routerLink="/auth/register" class="text-decoration-none">Not registered?</a>
+    <div class="error invalid-feedback d-block">
+      {{loginError}}
+    </div>
+  </app-auth-form>
+</div>
