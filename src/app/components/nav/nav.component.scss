@@ -1,0 +1,10 @@
+.nav-link.active {
+  &:focus {
+    color: whitesmoke !important;
+  }
+}
+.nav-link {
+  &:hover {
+    color: whitesmoke !important;
+  }
+}

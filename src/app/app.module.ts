@@ -3,19 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './container/auth/login/login.component';
-import { RegisterComponent } from './container/auth/register/register.component';
-import { ShareModule } from './module/share/share.module';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { Store } from 'store';
+import { HeaderComponent } from './components/header/header.component';
+import { NavComponent } from './components/nav/nav.component';
+import { ShareModule } from './share/module/share.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
+    HeaderComponent,
+    NavComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase())
   ],
-  providers: [],
+  providers: [Store],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { FirebaseOptions } from '@firebase/app';
-import { ShareModule } from '../share/share.module';
+import { ShareModule } from 'src/app/share/module/share.module';
 
 const firebaseAppConfig: FirebaseOptions = {
   apiKey: "AIzaSyBuSjz__EFErEHLbovc23RP6JkPivyjHR0",

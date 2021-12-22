@@ -1,0 +1,133 @@
+<form [formGroup]="form">
+  <div class="meal-body row divider mt-3">
+    <div class="col-12 meal-body__name py-3">
+      <div class="d-flex align-items-center my-2">
+        <img
+          src="assets/images/icons/meal-name-icon.png"
+          width="16"
+          height="16"
+        />
+        <span class="title-bold--small"> Meal name </span>
+      </div>
+      <div class="input-group input-group-sm">
+        <input
+          formControlName="name"
+          type="text"
+          class="form-control shadow-none"
+          placeholder="e.g. English Breakfast"
+          [ngClass]="{ 'is-invalid': isNameRequired }"
+        />
+      </div>
+      <div class="d-block invalid-feedback" *ngIf="isNameRequired">
+        Name is required
+      </div>
+    </div>
+    <div class="col-12 meal-body__ingredients mt-3 py-3 divider">
+      <div class="row align-items-center mt-3">
+        <div class="col d-flex align-items-center">
+          <img src="assets/images/icons/food-icon.png" width="16" height="16" />
+          <span class="title-bold--small">Food</span>
+        </div>
+        <div class="col-auto ml-auto">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm shadow-sm text-uppercase"
+            (click)="addIngredient()"
+          >
+            <img
+              src="assets/images/icons/add-icon.png"
+              width="24"
+              height="24"
+            />
+            Add Food
+          </button>
+        </div>
+      </div>
+      <div class="food-list mt-3" formArrayName="ingredients">
+        <div
+          class="row"
+          *ngFor="let ingredient of ingredients.controls; index as i"
+        >
+          <div class="col-12">
+            <div class="input-group input-group-sm mb-3">
+              <input
+                [formControlName]="i"
+                type="text"
+                class="form-control shadow-none"
+                placeholder="e.g. Eggs"
+                [ngClass]="{ 'is-invalid': isFoodNameRequired(i) }"
+              />
+              <button
+                class="btn btn-outline-danger"
+                type="button"
+                (click)="removeIngredient(i)"
+              >
+                X
+              </button>
+            </div>
+            <div class="d-block invalid-feedback" *ngIf="isFoodNameRequired(i)">
+              Food's name is required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row meal-footer divider py-3 mt-3">
+    <div class="col-auto mt-3">
+      <button
+        *ngIf="!exists"
+        type="button"
+        class="btn btn-primary btn-sm shadow-sm text-uppercase"
+        (click)="onCreateMeal()"
+      >
+        Create Meal
+      </button>
+      <button
+        *ngIf="exists"
+        type="button"
+        class="btn btn-primary btn-sm shadow-sm text-uppercase"
+        (click)="onUpdateMeal()"
+      >
+        Save
+      </button>
+    </div>
+    <div class="col-auto mt-3">
+      <button
+        type="button"
+        class="btn btn-light btn-sm shadow-sm text-uppercase"
+        (click)="navigateToMeals()"
+      >
+        Cancel
+      </button>
+    </div>
+    <div *ngIf="exists" class="col-8 trash-wrapper d-flex align-items-center justify-content-end mt-3">
+      <div class="row align-items-center justify-content-end h-100">
+        <div class="col-auto p-0" *ngIf="deleteToggle">
+          <small class="text-muted">Delete item?</small>
+          <button
+            class="btn btn-sm btn-danger shadow-none mx-2"
+            (click)="onDeleteMeal()"
+          >
+            Yes
+          </button>
+          <button
+            class="btn btn-sm btn-outline-secondary shadow-none"
+            (click)="toggleDelete()"
+          >
+            No
+          </button>
+        </div>
+        <div class="col-auto btn-trash h-100">
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm shadow-none"
+            (click)="toggleDelete()"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

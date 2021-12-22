@@ -1,0 +1,19 @@
+<div class="header-wrapper">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img
+          src="assets/images/icons/brand-icon.png"
+          alt="workout planner icon"
+          width="24"
+          height="24"
+          class="d-inline-block align-text-top"
+        />
+        Bootstrap
+      </a>
+      <button *ngIf="user?.authenticated" class="btn btn-danger btn-sm ml-auto" (click)="onLogout()">
+        Logout
+      </button>
+    </div>
+  </nav>
+</div>

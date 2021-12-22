@@ -1,0 +1,29 @@
+<div class="list-item row my-2 border rounded-1">
+  <div class="col-6 p-2">
+    <a [routerLink]="getRoute(item)" class="text-decoration-none">
+      <p class="m-0 list-item__name">
+        {{ item.name }}
+      </p>
+      <span
+        *ngFor="let ingredient of item.ingredients"
+        class="badge rounded-pill bg-primary list-item__ingredient"
+        >{{ ingredient }}</span
+      >
+    </a>
+  </div>
+  <div class="col-6 d-flex align-items-center justify-content-end p-0">
+    <div class="row align-items-center justify-content-end h-100" >
+      <div class="col-auto p-0" *ngIf="deleteToggle">
+        <small class="text-muted">Delete item?</small>
+        <button class="btn btn-sm btn-danger shadow-none mx-2" (click)="deleteItem()">Yes</button>
+        <button class="btn btn-sm btn-outline-secondary shadow-none" (click)="toggleDelete()">No</button>
+      </div>
+      <div class="col-auto btn-trash h-100">
+        <button type="button" class="btn shadow-none" (click)="toggleDelete()">
+          <img src="assets/images/icons/trash-icon.png" width="28" height="28" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

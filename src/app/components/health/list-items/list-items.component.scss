@@ -1,0 +1,19 @@
+.list-item {
+  border: 1px solid rgba(13, 110, 253, 0.2) !important;
+}
+.list-item__name {
+  color: black;
+  font-weight: 600;
+}
+.list-item__ingredient {
+  margin-right: 0.2rem;
+  font-style: italic;
+}
+.btn-trash {
+  button {
+    border-left: 1px solid rgba(13, 110, 253, 0.2) !important;
+    border-radius: 0;
+    height: 100%;
+    width: 70%;
+  }
+}

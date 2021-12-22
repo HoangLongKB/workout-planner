@@ -1,8 +1,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthFormComponent } from 'src/app/module/share/components/auth-form/auth-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { AuthFormComponent } from '../components/auth-form/auth-form.component';
 
 
 
@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
     FormsModule
   ],
   exports: [
-    AuthFormComponent
+   AuthFormComponent
   ]
 })
 export class ShareModule {

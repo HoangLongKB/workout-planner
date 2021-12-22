@@ -7,27 +7,47 @@
   <form [formGroup]="form" (submit)="onSubmit()">
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" formControlName="email"
-        [ngClass]="{ 'is-invalid': isEmailInvalid }">
-      <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': isEmailInvalid }"
+      />
+      <small class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
     </div>
     <div class="d-block invalid-feedback" *ngIf="isEmailInvalid">
       Email format need to match abc@mail.com
     </div>
     <div class="-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" formControlName="password"
-        [ngClass]="{ 'is-invalid': isPasswordEmpty }">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+        [ngClass]="{ 'is-invalid': isPasswordEmpty }"
+      />
     </div>
     <div class="invalid-feedback d-block" *ngIf="isPasswordEmpty">
       Password is required
     </div>
     <div class="form-group" *ngIf="!!isRegister">
       <label for="password-confirm">Confirm Password</label>
-      <input type="password" class="form-control" id="password-confirm" [value]="password_confirm"
-        [ngClass]="{ 'is-invalid': !isPasswordMatch }" (input)="onPasswordConfirmInput($event)">
+      <input
+        type="password"
+        class="form-control"
+        id="password-confirm"
+        formControlName="password_confirm"
+        [ngClass]="{ 'is-invalid': !isPasswordMatch && isPasswordConfirmTouched}"
+      />
     </div>
-    <div class="invalid-feedback d-block" *ngIf="!isPasswordMatch && !!isRegister">
+    <div
+      class="invalid-feedback d-block"
+      *ngIf="!isPasswordMatch && !!isRegister && isPasswordConfirmTouched"
+    >
       Confirm password need to match
     </div>
     <ng-content select=".error"></ng-content>

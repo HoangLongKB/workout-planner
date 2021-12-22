@@ -1,0 +1,33 @@
+<div class="meal-wrapper">
+  <div class="row meal-header">
+    <div class="col meal-title d-flex flex-row align-items-center">
+      <img src="assets/images/icons/meals-icon.png" width="32" height="32" />
+      <p class="my-auto mx-2" *ngIf="meal$ | async as meal; else title_loading">
+        {{ meal.name ? "Edit" : "Create" }} Meal
+      </p>
+      <ng-template #title_loading>
+        <p class="my-auto mx-2">Loading...</p>
+      </ng-template>
+    </div>
+  </div>
+  <div *ngIf="meal$ | async as meal; else loading">
+    <app-meal-form
+      [meal]="meal"
+      (update)="onUpdateMeal($event)"
+      (delete)="onDeleteMeal($event)"
+      (create)="onCreateMeal($event)"
+    ></app-meal-form>
+  </div>
+  <ng-template #loading>
+    <div class="row mt-3">
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <img
+          src="assets/images/icons/fetching-icon.png"
+          width="24"
+          height="24"
+        />
+        <p class="my-auto mx-2">Fetching meal...</p>
+      </div>
+    </div>
+  </ng-template>
+</div>

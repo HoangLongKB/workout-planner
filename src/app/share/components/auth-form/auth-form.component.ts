@@ -4,28 +4,24 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
-  styleUrls: ['./auth-form.component.scss']
+  styleUrls: ['./auth-form.component.scss'],
 })
 export class AuthFormComponent implements OnInit {
-
   @Input()
   isRegister: boolean = false;
 
   @Output()
   submit: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
-  password_confirm: string = '';
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
-  form = this.fb.group(
-    {
-      email: ['', [Validators.email]],
-      password: ['', [Validators.required]]
-    }
-  )
+  form = this.fb.group({
+    email: ['', [Validators.email]],
+    password: ['', [Validators.required]],
+    password_confirm: [''],
+  });
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get isPasswordEmpty() {
     const control = this.form.get('password');
@@ -34,7 +30,16 @@ export class AuthFormComponent implements OnInit {
 
   get isPasswordMatch() {
     const controlPassword = this.form.get('password');
-    return controlPassword?.value === this.password_confirm;
+    const controlPasswordConfirm = this.form.get('password_confirm');
+    return (
+      controlPassword?.value === controlPasswordConfirm?.value &&
+      controlPassword?.touched &&
+      controlPasswordConfirm?.touched
+    );
+  }
+
+  get isPasswordConfirmTouched() {
+    return this.form.get('password_confirm')?.touched;
   }
 
   get isEmailInvalid() {
@@ -46,13 +51,8 @@ export class AuthFormComponent implements OnInit {
     if (this.isRegister && !this.isPasswordMatch) {
       return;
     }
-
-    if (this.form.valid && this.form ) {
+    if (this.form.valid && this.form) {
       this.submit.emit(this.form);
     }
   }
-  onPasswordConfirmInput(event: Event) {
-    this.password_confirm = (event.target as HTMLInputElement)?.value;
-  }
-
 }
