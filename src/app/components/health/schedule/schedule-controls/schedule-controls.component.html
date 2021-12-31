@@ -1,0 +1,15 @@
+<div class="row controls-wrapper">
+  <div class="col-auto">
+    <button class="btn btn-outline-primary btn-sm shadow-none" (click)="moveDate(offset -1)">
+      <img src="assets/images/icons/back-icon.png" width="16" height="16">
+    </button>
+  </div>
+  <div class="col-auto flex-grow-1 text-center border-bottom border-primary text-bold">
+    {{selected | date:"fullDate"}}
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-primary btn-sm shadow-none" (click)="moveDate(offset + 1)">
+      <img src="assets/images/icons/next-icon.png" width="16" height="16">
+    </button>
+  </div>
+</div>

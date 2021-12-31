@@ -1,0 +1,71 @@
+<div class="row schedule-assign m-0 justify-content-center align-items-center">
+  <div
+    class="
+      col-8
+      schedule-assign__modal
+      py-2
+      border border-primary
+      rounded-1
+      shadow
+    "
+  >
+    <div class="row pt-3 pb-4">
+      <div class="col-7 title d-flex align-items-center">
+        <h3 class="m-0 d-flex align-items-center text-bold">
+          <img
+            src="assets/images/icons/{{
+              section.type === 'workouts' ? 'workout' : 'meals'
+            }}-icon.png"
+            width="20"
+            height="20"
+          />
+          Assign {{ section.type }}
+        </h3>
+      </div>
+      <div
+        class="
+          col-5
+          modal__add modal__title
+          d-flex
+          justify-content-center
+          align-items-center
+        "
+      >
+        <button
+          class="btn btn-primary btn-sm shadow-none rounded-1 text-uppercase"
+          [routerLink]="getRoute(section.type)"
+        >
+          <img src="assets/images/icons/add-icon.png" width="24" height="24" />
+          New {{ section.type }}
+        </button>
+      </div>
+    </div>
+    <div class="row list border-top border-bottom border-primary py-3">
+      <div class="col-12 list-items__empty" *ngIf="!list?.length">
+        <img
+          src="assets/images/icons/fetching-icon.png"
+          width="16"
+          height="16"
+        />
+        Nothing here to assign
+        {{list | json}}
+      </div>
+      <div
+        class="col-12 list__item text-bold my-1"
+        *ngFor="let item of list"
+        (click)="toggleItem(item)"
+      >
+          <img src="assets/images/icons/approve-{{exists(item.name) ? 'active' : 'inactive'}}-icon.png" width="20" height="20" />
+        {{ item.name }}
+      </div>
+    </div>
+    <div class="row submit pb-1 pt-2">
+      <div class="col-auto">
+        <button class="btn btn-primary btn-sm shadow-none text-bold" (click)="updateAssign()">Update</button>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-secondary btn-sm shadow-none" (click)="cancelAssign()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -23,7 +23,8 @@
       "dom"
     ],
     "paths": {
-      "store": ["./src/store.store.ts"]
+      "store": ["./src/store.store.ts"],
+      "icons": ["./src/assets/images/icons"]
     }
   },
   "angularCompilerOptions": {

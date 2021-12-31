@@ -1,0 +1,108 @@
+<form [formGroup]="form">
+  <div class="workout-body row divider mt-3">
+    <div class="col-12 workout-body__name py-3">
+      <div class="d-flex align-items-center my-2">
+        <img src="assets/images/icons/meal-name-icon.png" width="16" height="16" />
+        <span class="title-bold--small"> Workout name </span>
+      </div>
+      <div class="input-group input-group-sm">
+        <input formControlName="name" type="text" class="form-control shadow-none" [placeholder]="placeholder"
+          [ngClass]="{ 'is-invalid': isNameRequired }" />
+      </div>
+      <div class="d-block invalid-feedback" *ngIf="isNameRequired">
+        Name is required
+      </div>
+    </div>
+    <div class="col-12 workout-body__type mt-3 py-3 divider">
+      <app-workout-type formControlName="type"></app-workout-type>
+    </div>
+    <div class="col-12 mt-3 py-3 workout-body__detail">
+      <div class="row" formGroupName="strength" *ngIf="type === 'strength'">
+        <div class="col-4">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend input-group-sm">
+              <span class="input-group-text">Reps</span>
+            </div>
+            <input type="text" class="form-control" formControlName="reps">
+          </div>
+        </div>
+        <div class="col-4">
+
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend input-group-sm">
+              <span class="input-group-text">Sets</span>
+            </div>
+            <input type="text" class="form-control" formControlName="sets">
+          </div>
+        </div>
+        <div class="col-4">
+
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend input-group-sm">
+              <span class="input-group-text">Weight (Kg)</span>
+            </div>
+            <input type="text" class="form-control" formControlName="reps" formControlName="weight">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row" formGroupName="endurance" *ngIf="type === 'endurance'">
+        <div class="col-4">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend input-group-sm">
+              <span class="input-group-text">Distance (Km)</span>
+            </div>
+            <input type="text" class="form-control" formControlName="distance">
+          </div>
+        </div>
+        <div class="col-4">
+
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend input-group-sm">
+              <span class="input-group-text">Duration (minute)</span>
+            </div>
+            <input type="text" class="form-control" formControlName="duration">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row workout-footer divider py-3 mt-3">
+    <div class="col-auto mt-3">
+      <button *ngIf="!exists" type="button" class="btn btn-primary btn-sm shadow-sm text-uppercase"
+        (click)="onCreateWorkout()">
+        Create Workout
+      </button>
+      <button *ngIf="exists" type="button" class="btn btn-primary btn-sm shadow-sm text-uppercase"
+        (click)="onUpdateWorkout()">
+        Save
+      </button>
+    </div>
+    <div class="col-auto mt-3">
+      <button type="button" class="btn btn-light btn-sm shadow-sm text-uppercase" (click)="navigateToWorkouts()">
+        Cancel
+      </button>
+    </div>
+    <div *ngIf="exists" class="col-8 trash-wrapper d-flex align-items-center justify-content-end mt-3">
+      <div class="row align-items-center justify-content-end h-100">
+        <div class="col-auto p-0" *ngIf="deleteToggle">
+          <small class="text-muted">Delete item?</small>
+          <button class="btn btn-sm btn-danger shadow-none mx-2" (click)="onDeleteWorkout()">
+            Yes
+          </button>
+          <button class="btn btn-sm btn-outline-secondary shadow-none" (click)="toggleDelete()">
+            No
+          </button>
+        </div>
+        <div class="col-auto btn-trash h-100">
+          <button type="button" class="btn btn-outline-danger btn-sm shadow-none" (click)="toggleDelete()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,1 +1,15 @@
-<p>schedule works!</p>
+<div class="schedule-wrapper">
+  <app-schedule-calendar
+    [date]="date$ | async"
+    (change)="onDateChange($event)"
+    [items]="schedule$ | async"
+    (select)="changeSection($event)"
+  >
+  </app-schedule-calendar>
+  <app-schedule-assign
+    *ngIf="open"
+    [section]="selected$ | async"
+    [list]="list$ | async"
+  >
+  </app-schedule-assign>
+</div>

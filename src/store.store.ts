@@ -4,7 +4,12 @@ import { State } from './app/models/state.model';
 
 const state: State = {
   user: undefined!,
-  meals: undefined!
+  meals: undefined!,
+  date: undefined!,
+  schedule: undefined!,
+  selected: undefined!,
+  list: undefined!,
+  workouts: undefined!
 };
 
 @Injectable()

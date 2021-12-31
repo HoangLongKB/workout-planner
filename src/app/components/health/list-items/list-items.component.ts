@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./list-items.component.scss']
 })
 export class ListItemsComponent implements OnInit {
-  
+
   @Input()
   item: any;
 
@@ -21,7 +21,7 @@ export class ListItemsComponent implements OnInit {
   }
 
   getRoute(item: any) {
-    return [`/meals/${item.$key}`]
+    return [`/${item.ingredients ? 'meals' : 'workouts'}/${item.$key}`]
   }
 
   toggleDelete() {

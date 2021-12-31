@@ -4,15 +4,18 @@
       <p class="m-0 list-item__name">
         {{ item.name }}
       </p>
-      <span
-        *ngFor="let ingredient of item.ingredients"
-        class="badge rounded-pill bg-primary list-item__ingredient"
-        >{{ ingredient }}</span
-      >
+      <div *ngIf="item.ingredients; else workoutsTemplate">
+        <span *ngFor="let ingredient of item.ingredients" class="badge rounded-pill bg-primary list-item__ingredient">{{
+          ingredient }}</span>
+      </div>
+      <ng-template #workoutsTemplate>
+        <span class="badge rounded-pill bg-primary list-item__detail" *ngFor="let item of (item | workout)">{{
+          item }}</span>
+      </ng-template>
     </a>
   </div>
   <div class="col-6 d-flex align-items-center justify-content-end p-0">
-    <div class="row align-items-center justify-content-end h-100" >
+    <div class="row align-items-center justify-content-end h-100">
       <div class="col-auto p-0" *ngIf="deleteToggle">
         <small class="text-muted">Delete item?</small>
         <button class="btn btn-sm btn-danger shadow-none mx-2" (click)="deleteItem()">Yes</button>

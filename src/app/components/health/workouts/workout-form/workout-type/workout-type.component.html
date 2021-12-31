@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-auto" *ngFor="let selector of selectors">
+    <button class="btn btn-lg btn-outline-primary shadow-none text-uppercase align-middle" [class.active]="selector === value"
+      (click)="setType(selector)">
+      <img src="assets/images/icons/{{selector}}-icon.png" width="24" height="24">
+      {{selector}}</button>
+  </div>
+</div>

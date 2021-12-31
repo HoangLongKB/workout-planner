@@ -1,1 +1,35 @@
-<p>workouts works!</p>
+<div class="workouts-wrapper">
+  <div class="row">
+    <div class="col workouts-title d-flex flex-row align-items-center">
+      <img src="assets/images/icons/workout-icon.png" width="32" height="32" />
+      <p class="my-auto mx-2">Your Workouts</p>
+    </div>
+    <div class="col-auto workouts-add ml-auto ">
+      <button class="btn btn-primary btn-sm shadow-sm text-uppercase" routerLink="new">
+        <img src="assets/images/icons/add-icon.png" width="24" height="24" />
+        Add Workout
+      </button>
+    </div>
+  </div>
+  <div class="row workouts-body p-2">
+    <div class="col-12 workouts-items">
+      <div class="row" *ngIf="workouts$ | async as workouts; else loading">
+        <div class="row mt-3" *ngIf="!workouts.length">
+          <div class="col-12 d-flex justify-content-center align-items-center">
+            <img src="assets/images/icons/smile-icon.png" width="24" height="24" />
+            <p class="my-auto mx-2">No workouts, add a new workouts to start.</p>
+          </div>
+        </div>
+        <app-list-items *ngFor="let workout of workouts" [item]="workout" (delete)="onDeleteWorkout($event)"></app-list-items>
+      </div>
+      <ng-template #loading>
+        <div class="row mt-3">
+          <div class="col-12 d-flex justify-content-center align-items-center">
+            <img src="assets/images/icons/fetching-icon.png" width="24" height="24" />
+            <p class="my-auto mx-2">Fetching workouts...</p>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

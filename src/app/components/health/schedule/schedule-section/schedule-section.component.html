@@ -1,0 +1,67 @@
+<div class="row mt-1">
+  <div class="col-12 bg-primary justify-content-center align-items-center d-flex p-2">
+    <h5 class="text-uppercase text-center align-middle text-white text-bold m-0">{{name}}</h5>
+  </div>
+  <div
+    class="col-12 mt-1"
+    *ngIf="section.meals; else addMeal"
+    (click)="onSelect('meals', section.meals)"
+  >
+    <span
+      class="badge rounded-pill bg-primary list-item__detail"
+      *ngFor="let meal of section.meals"
+      >{{ meal.name }}</span
+    >
+  </div>
+  <ng-template #addMeal>
+    <div class="col-12 mt-1">
+      <div class="row justify-content-start">
+        <div class="col-auto">
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm shadow-none border-0 text-uppercase"
+            (click)="onSelect('meals')"
+          >
+            <img
+              src="assets/images/icons/add-blue-icon.png"
+              width="24"
+              height="24"
+            />
+            Assign meal
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div
+    class="col-12 mt-1"
+    *ngIf="section.workouts; else addWorkouts"
+    (click)="onSelect('workouts', section.workouts)"
+  >
+    <span
+      class="badge rounded-pill bg-primary list-item__detail"
+      *ngFor="let workout of section.workouts"
+      >{{ workout.name }}</span
+    >
+  </div>
+  <ng-template #addWorkouts>
+    <div class="col-12 mt-1">
+      <div class="row justify-content-start">
+        <div class="col-auto">
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm border-0 shadow-none text-uppercase"
+            (click)="onSelect('workouts')"
+          >
+            <img
+              src="assets/images/icons/add-blue-icon.png"
+              width="24"
+              height="24"
+            />
+            Assign workouts
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
